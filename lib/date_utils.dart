@@ -2,7 +2,11 @@ library utils;
 
 import "package:intl/intl.dart";
 
+///
+/// SERIOUSLY DART, WHY NO EXTENSION METHODS???
+///
 class Utils {
+
   static final DateFormat _monthFormat = new DateFormat("MMMM yyyy");
   static final DateFormat _dayFormat = new DateFormat("dd");
   static final DateFormat _firstDayFormat = new DateFormat("MMM dd");
@@ -151,4 +155,67 @@ class Utils {
   static DateTime nextWeek(DateTime w) {
     return w.add(new Duration(days: 7));
   }
+
+  static DateTime fromDate(DateTime source, DateTime date) {
+    return DateTime(
+      date.year,
+      date.month,
+      date.day,
+      source.hour,
+      source.minute,
+      source.second,
+      source.millisecond,
+    );
+  }
+
+  static DateTime copyWith(DateTime source, {
+    int year,
+    int month,
+    int day,
+    int hour,
+    int minute,
+    int second,
+    int millisecond,
+    int microsecond,
+  }) {
+    return DateTime(
+      year ?? source.year,
+      month ?? source.month,
+      day ?? source.day,
+      hour ?? source.hour,
+      minute ?? source.minute,
+      second ?? source.second,
+      millisecond ?? source.millisecond,
+      microsecond ?? source.microsecond,
+    );
+  }
+
+  static DateTime fromTimeOfDay(DateTime source, TimeOfDay time) {
+    return DateTime(
+      source.year,
+      source.month,
+      source.day,
+      time.hour,
+      time.minute,
+      source.second,
+      source.millisecond,
+    );
+  }
+
+  static String formatDMY(DateTime date) {
+    // return '${date.day.toString().padLeft(2, '0')}/'
+    //        '${date.month.toString().padLeft(2, '0')}/'
+    //        '${date.year.toString().padLeft(2, '0')}';
+    return DateFormat('dd/MM/yyyy').format(date);
+  }
+
+  static String formatDMYT(DateTime date) {
+    return '${formatDMY(date)} at ${DateFormat('HH:mm').format(date)}';
+  }
+
+  static String formatEM(DateTime date) {
+    return '${DateFormat('MMM d').format(date)} at ${DateFormat('HH:mm').format(date)}';
+  }
+
 }
+
