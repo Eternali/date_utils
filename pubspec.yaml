@@ -4,13 +4,12 @@ authors:
 - Eric Windmill <ericwindmill@gmail.com>
 description: A Dart library for manipulating DateTimes.
 version: 0.1.0
-homepage: https://github.com/apptreesoftware/date_utils
+homepage: https://github.com/eternali/date_utils
 
 environment:
   sdk: '>=2.0.0 <3.0.0'
 
 dependencies:
+  flutter:
+    sdk: flutter
   intl: ^0.15.0
-
-dev_dependencies:
-  test: ^0.12.0
