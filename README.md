@@ -18,7 +18,7 @@ See Packages:
 
 ```yaml
 dev_dependencies:
-    date_utils: ^0.0.1
+    date_utils: ^0.1.0
 ```
 
 2. Run `pub install`
