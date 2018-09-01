@@ -37,8 +37,11 @@ class Utils {
     var firstToDisplay = first.subtract(new Duration(days: daysBefore));
     var last = Utils.lastDayOfMonth(month);
 
-    var daysAfter = 7 - (last.weekday % 7);
+    var daysAfter = 6 - (last.weekday % 7);
     var lastToDisplay = last.add(new Duration(days: daysAfter));
+    print('${last.toString()}');
+    print('$daysAfter, ${last.weekday}');
+    print('${lastToDisplay.toString()}');
     return daysInRange(firstToDisplay, lastToDisplay).toList();
   }
 
