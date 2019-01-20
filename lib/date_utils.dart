@@ -32,17 +32,10 @@ class Utils {
 
   /// The list of days in a given month
   static List<DateTime> daysInMonth(DateTime month) {
-    var first = firstDayOfMonth(month);
-    var daysBefore = first.weekday % 7;
-    var firstToDisplay = first.subtract(new Duration(days: daysBefore));
-    var last = Utils.lastDayOfMonth(month);
-
-    var daysAfter = 6 - (last.weekday % 7);
-    var lastToDisplay = last.add(new Duration(days: daysAfter));
-    print('${last.toString()}');
-    print('$daysAfter, ${last.weekday}');
-    print('${lastToDisplay.toString()}');
-    return daysInRange(firstToDisplay, lastToDisplay).toList();
+    return daysInRange(
+      firstDayOfWeek(firstDayOfMonth(month)),
+      lastDayOfWeek(lastDayOfMonth(month))
+    ).toList();
   }
 
   static bool isFirstDayOfMonth(DateTime day) {
@@ -75,8 +68,7 @@ class Utils {
 
     /// Weekday is on a 1-7 scale Monday - Sunday,
     /// This Calendar's Week starts on Sunday
-    var increaseNum = day.weekday % 7;
-    return day.add(new Duration(days: 7 - increaseNum));
+    return day.add(new Duration(days: 8 - (day.weekday == 7 ? 1 : day.weekday + 1)));
   }
 
   /// The last day of a given month
